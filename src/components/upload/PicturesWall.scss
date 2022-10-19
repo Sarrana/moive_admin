@@ -1,0 +1,11 @@
+.picturesWall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 115px);
+    grid-row-gap: 10px;
+
+    .img_uploader_container {
+        .ant-form-item {
+            margin: 0;
+        }
+    }
+}

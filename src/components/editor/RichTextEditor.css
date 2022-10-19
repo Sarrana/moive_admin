@@ -1,0 +1,148 @@
+#RichTextEditor .ql-firstIndent {
+    width: 80px;
+}
+
+#RichTextEditor .ql-firstIndent .ql-picker-label::before,
+#RichTextEditor .ql-firstIndent .ql-picker-item::before {
+    content: "Normal";
+}
+
+#RichTextEditor .ql-firstIndent .ql-picker-label[data-label]:not([data-label=""])::before,
+#RichTextEditor .ql-firstIndent .ql-picker-item[data-label]:not([data-label=""])::before {
+    content: attr(data-label);
+}
+
+#RichTextEditor .ql-firstIndent .ql-picker-label[data-value="2"]::before,
+#RichTextEditor .ql-firstIndent .ql-picker-item[data-value="2"]::before {
+    content: "缩进 2";
+}
+
+#RichTextEditor .ql-firstIndent .ql-picker-label[data-value="3"]::before,
+#RichTextEditor .ql-firstIndent .ql-picker-item[data-value="3"]::before {
+    content: "缩进 3";
+}
+
+#RichTextEditor .ql-firstIndent .ql-picker-label[data-value="4"]::before,
+#RichTextEditor .ql-firstIndent .ql-picker-item[data-value="4"]::before {
+    content: "缩进 4";
+}
+
+#RichTextEditor .ql-editor .ql-firstIndent-2 {
+    text-indent: 2em;
+}
+
+#RichTextEditor .ql-editor .ql-firstIndent-3 {
+    text-indent: 3em;
+}
+
+#RichTextEditor .ql-editor .ql-firstIndent-4 {
+    text-indent: 4em;
+}
+
+#RichTextEditor .ql-editor .ql-indent-1:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-1:not(.ql-direction-rtl) {
+    text-indent: 1em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-1.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-1.ql-direction-rtl.ql-align-right {
+    text-indent: 1em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-2:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-2:not(.ql-direction-rtl) {
+    text-indent: 2em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-2.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-2.ql-direction-rtl.ql-align-right {
+    text-indent: 2em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-3:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-3:not(.ql-direction-rtl) {
+    text-indent: 3em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-3.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-3.ql-direction-rtl.ql-align-right {
+    text-indent: 3em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-4:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-4:not(.ql-direction-rtl) {
+    text-indent: 4em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-4.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-4.ql-direction-rtl.ql-align-right {
+    text-indent: 4em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-5:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-5:not(.ql-direction-rtl) {
+    text-indent: 5em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-5.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-5.ql-direction-rtl.ql-align-right {
+    text-indent: 5em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-6:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-6:not(.ql-direction-rtl) {
+    text-indent: 6em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-6.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-6.ql-direction-rtl.ql-align-right {
+    text-indent: 6em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-7:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-7:not(.ql-direction-rtl) {
+    text-indent: 7em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-7.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-7.ql-direction-rtl.ql-align-right {
+    text-indent: 7em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-8:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-8:not(.ql-direction-rtl) {
+    text-indent: 8em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-8.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-8.ql-direction-rtl.ql-align-right {
+    text-indent: 8em;
+    padding-right: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-9:not(.ql-direction-rtl),
+#RichTextEditor .ql-editor li.ql-indent-9:not(.ql-direction-rtl) {
+    text-indent: 9em;
+    padding-left: 0;
+}
+
+#RichTextEditor .ql-editor .ql-indent-9.ql-direction-rtl.ql-align-right,
+#RichTextEditor .ql-editor li.ql-indent-9.ql-direction-rtl.ql-align-right {
+    text-indent: 9em;
+    padding-right: 0;
+}

@@ -1,0 +1,88 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "semi": "off",
+        "linebreak-style": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "import/order": "off",
+        "import/prefer-default-export": "off",
+        "max-len": "off",
+        "object-curly-newline": "off",
+        "no-unused-vars": "warn",
+        "camelcase": "off",
+        "comma-dangle": ["error", "never"],
+        "quotes": "off",
+        "prefer-destructuring": "off",
+        "eqeqeq": "off",
+        "no-lonely-if": "off",
+        "arrow-parens": "error",
+        "no-use-before-define": "off",
+        "object-property-newline": "off",
+        "no-shadow": "off",
+        "object-shorthand": "off",
+        "no-var": "error",
+        "prefer-const": "off",
+        "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+        "no-plusplus": "off",
+        "class-methods-use-this": "off",
+        "no-param-reassign": "off",
+        "no-prototype-builtins": "off",
+        "no-async-promise-executor": "off",
+        "no-await-in-loop": "off",
+        "no-loop-func": "off",
+        "arrow-body-style": "off",
+        "no-unreachable": "warn",
+        "no-restricted-syntax": "off",
+        "no-underscore-dangle": "off",
+        "consistent-return": "off",
+        "no-useless-escape": "off",
+        "no-nested-ternary": "off",
+        "no-case-declarations": "off",
+        "no-console": "off",
+        "guard-for-in": "off",
+        "default-param-last": "off",
+        "react/jsx-filename-extension": [2, { "extensions": [
+            ".js", ".jsx", ".ts", ".tsx"
+        ]}],
+        "react/function-component-definition": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/no-unstable-nested-components": "off",
+        "react/destructuring-assignment": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/state-in-constructor": "off",
+        "react/no-unused-class-component-methods": "off",
+        "react/no-render-return-value": "off",
+        "react/no-unused-prop-types": "warn",
+        "react/require-default-props": "off",
+        "react/static-property-placement": "off",
+        "react/jsx-closing-bracket-location": ["error", "after-props"],
+        "react/no-access-state-in-setstate": "off",
+        "react/no-array-index-key": "off",
+        "react/prop-types": "off",
+        "jsx-a11y/no-noninteractive-tabindex": "off",
+        "jsx-a11y/no-static-element-interactions": "off"
+    }
+}

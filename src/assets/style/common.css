@@ -1,0 +1,51 @@
+#root {
+    height: 100%;
+}
+.layout_base {
+    min-height: 100%;
+}
+.layout_right {
+    overflow-y: auto;
+}
+
+.ant-col {
+    /* display: grid; */
+}
+
+.ant-card-head-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ant-descriptions-item-container {
+    align-items: center;
+}
+
+.row_2_ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.splash-uploader > .ant-upload {
+    width: 260px;
+    height: 450px;
+}
+.banner-uploader > .ant-upload {
+    width: 240px;
+    height: 120px;
+}
+
+.table-cell-ib > span {
+    display: inline-block;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.perch_item .ant-form-item-label {
+    opacity: 0;
+}

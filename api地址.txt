@@ -1,0 +1,14 @@
+测试服：
+    http://192.168.0.30:8188
+    http://movieapi.nnyb.xyz
+
+正式服：
+    http://api.xfdy.live
+    http://backendapi.xfdy.live
+    http://backapi.xfdy.live
+
+视频2.0测试服：
+    http://movieapi.nnyb.xyz
+
+视频2.0正式服：
+    预发布 http://api.xfdy3.live

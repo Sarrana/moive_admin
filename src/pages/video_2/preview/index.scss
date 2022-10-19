@@ -1,0 +1,21 @@
+.media-player-box {
+    position: relative;
+    width: 1040px;
+    height: calc(1040px * 9 / 16);
+    margin: 0 auto;
+    .title {
+        font-size: 30px;
+        margin: 20px 0;
+    }
+    .media-player {
+        background-color: #353649;
+        width: 100%;
+        height: 100%;
+
+        .dplayer-setting-speed-item.selected {
+            .dplayer-label {
+                color: #a6560e;
+            }
+        }
+    }
+}
