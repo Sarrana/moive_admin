@@ -319,10 +319,25 @@ export const fetchAnnouncementApi = () => new Promise((resolve, reject) => {
         .catch((e) => { reject(e) })
 })
 
+// 
 export const updateAnnouncementApi = (params) => new Promise((resolve, reject) => {
     axios.post('/api/admin/video/video_notice_add', params)
         .then((r) => {
             resolve(r)
         })
         .catch((e) => { reject(e) })
+})
+
+// 视频 - 配置管理 - 版本管理 - 获取版本列表
+export const getVersionListApi_2 = (params) => new Promise((resolve, reject) => {
+    axios.post('/api/admin/versions/list', params)
+        .then(r => resolve(r))
+        .catch(e => reject(e))
+})
+
+// 视频 - 配置管理 - 版本管理 - 获取版本列表
+export const updateVersionSaveApi_2 = (params) => new Promise((resolve, reject) => {
+    axios.post('/api/admin/versions/save', params)
+        .then(r => resolve(r))
+        .catch(e => reject(e))
 })

@@ -27,6 +27,7 @@ export interface SearchFormItem {
     radioOp?: RadioOpType[];
     checkbox?: CheckboxOpType;
     valuePropName?: string;
+    allowClear?: boolean;
     render?: (item: SearchFormItem) => React.ReactElement;
     selectOpRender?: (item: SelectOpType) => React.ReactElement;
 }
@@ -60,14 +61,15 @@ function SearchForm(props: SearchFormProps) {
     const [initData, setInitData] = useState(props.params);
 
     const reset = () => {
-        setInitData({});
+        // setInitData({});
+        setInitData(initData)
         form.resetFields();
         props.onSearch({});
     };
 
     const onSearch = () => {
         form.validateFields().then((res) => {
-            // console.log('onSearch ', res);
+            console.log('onSearch ', res);
             props.onSearch(res);
         });
     };
@@ -76,7 +78,7 @@ function SearchForm(props: SearchFormProps) {
         switch (item.type) {
             case 'select':
                 return (
-                    <Select style={{ width: item.width || 160 }} placeholder={item.placeholder} allowClear>
+                    <Select style={{ width: item.width || 160 }} placeholder={item.placeholder} allowClear={item.allowClear == undefined ? true : item.allowClear}>
                         {
                             item.selectOp && item.selectOp.map((i) => (
                                 item.selectOpRender ? item.selectOpRender(i) : <Select.Option value={i.value} key={String(i.value)}>{i.name}</Select.Option>
@@ -131,7 +133,12 @@ function SearchForm(props: SearchFormProps) {
 
     return (
         <Card>
-            <Form className="layout__search" form={form} layout="inline" onFinish={onSearch} initialValues={initData || {}}>
+            <Form 
+                className="layout__search" 
+                form={form} layout="inline" 
+                onFinish={onSearch} 
+                initialValues={initData || {}}
+            >
                 {/* {props.formList.map((item: SearchFormItem) => (item.render ? item.render(item) : renderItem(item)))} */}
                 {props.formList.map((item: SearchFormItem) => (
                     item.render ? item.render(item)

@@ -78,3 +78,22 @@ export const encryptionOp = [
     { id: 2, label: '已加密', value: '已加密' },
     { id: 3, label: '加密中', value: '加密中' }
 ]
+
+// 视频管理-评论管理- 审核状态
+export const cmtStatusOp = [
+    { id: 1, label: '审核通过', value: '审核通过' },
+    { id: 0, label: '审核未通过', value: '审核未通过' }
+]
+
+// 视频管理-工单管理- 回复状态
+export const feedbackStatusOp = [
+    { id: 1, label: '已回复 ', value: '已回复 ' },
+    { id: 0, label: '未回复', value: '未回复' }
+]
+
+export const versionOSOP = [
+    { id: 1, label: '安卓', value: 'android ' },
+    { id: 2, label: 'iOS', value: 'ios ' },
+    { id: 3, label: '全部', value: 'all ' },
+]   
+

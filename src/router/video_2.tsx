@@ -20,6 +20,9 @@ import PlayerPage from '@/pages/video_2/preview'
 import Announcement from '@/pages/video_2/config/announcement'
 import MediaStatistics from '@/pages/video_2/dashboard/mediaStatistics'
 import VideoSeries from '@/pages/video_2/content/VideoSeries'
+import { VideoCmtList } from '@/pages/video_2/comment/VideoCmtList'
+import { VideoFeedbackList } from '@/pages/video_2/feedback/VideoFeedbackList'
+import { VersionMgr } from '@/pages/video_2/config/version'
 
 const videoRouer = [
     {
@@ -167,6 +170,27 @@ const videoRouer = [
             }
         ]
     },
+   /*  {
+        label: '评论管理',
+        path: 'CommentMgr',
+        submenus: true,
+        next: true,
+        children: [
+            {
+                label: '评论管理',
+                path: 'CommentList',
+                submenus: true,
+                element: <Outlet />,
+                children: [
+                    {
+                        index: true,
+                        element: <VideoContentList />
+                    },
+                ]
+            }
+        ]
+    }, */
+
     {
         label: '运营管理',
         path: 'operationMgr',
@@ -244,6 +268,12 @@ const videoRouer = [
                 path: 'Announcement',
                 submenus: true,
                 element: <Announcement />
+            },
+            {
+                label: '版本管理',
+                path: 'VersionMgr',
+                submenus: true,
+                element: <VersionMgr />
             }
         ]
     },
@@ -266,6 +296,18 @@ const videoRouer = [
         path: 'SearchMgr',
         submenus: true,
         element: <VideoSearchList />
+    },
+    {
+        label: '评论管理',
+        path: 'CommentMgr',
+        submenus: true,
+        element: <VideoCmtList />
+    },
+    {
+        label: '工单管理',
+        path: 'FeedbackMgr',
+        submenus: true,
+        element: <VideoFeedbackList />
     }
 ]
 

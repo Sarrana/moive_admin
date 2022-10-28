@@ -1,6 +1,7 @@
 import { Avatar, Breadcrumb, Button, Image, message, Upload } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
 import logo from '../../assets/favicon.svg';
+// import logo from "../../assets/logo.png";
 import { LoadingOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RouteConfig, RouteType } from '../../router';
@@ -95,10 +96,11 @@ export const HeadBar = () => {
     }, [])
 
     return (
-        <Header style={{ backgroundColor: "#fff", padding: 0, position: "relative" }}>
+        <Header style={{ backgroundColor: "#fff", padding: 0, position: "relative", display: 'flex', alignItems: 'center'}}>
             <Image src={logo} style={{ height: 64 }} preview={false} />
-            <div style={{ position: "absolute", left: 100, display: "inline-block", verticalAlign: "middle" }}>站群管理系统</div>
-            <Breadcrumb style={{ position: "absolute", left: 200, display: "inline-block", verticalAlign: "middle", lineHeight: "unset" }}>
+            {/* <Image src={logo} style={{ width: 100, }} preview={false} /> */}
+            <div style={{ position: "absolute", left: 120, display: "inline-block", verticalAlign: "middle" }}>站群管理系统</div>
+            <Breadcrumb style={{ position: "absolute", left: 270, display: "inline-block", verticalAlign: "middle", lineHeight: "unset" }}>
                 {breadcrumbItems}
             </Breadcrumb>
             {uploading

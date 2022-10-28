@@ -12,3 +12,10 @@
 
 视频2.0正式服：
     预发布 http://api.xfdy3.live
+
+目前访问地址：
+// 测试：
+https://api.julymovies.com
+
+// 正式：
+https://api.dy18.fun

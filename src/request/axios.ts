@@ -19,7 +19,7 @@ axios.interceptors.request.use(
             // @ts-ignore
             config.headers.common.Authorization = `Bearer ${token}`;
         }
-        // console.log("request >>> ", config);
+        console.log("request >>> ", config);
         return config;
     },
     (error: AxiosError) => Promise.reject(error)
@@ -27,7 +27,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     (response: AxiosResponse) => {
-        // console.log("response >>> ", response?.config?.url, response);
+        console.log("response >>> ", response?.config?.url, response);
         if (!response || response.status != 200 || !response.data) {
             return Promise.reject(response);
         }

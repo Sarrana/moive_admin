@@ -146,11 +146,11 @@ export const VideoAdvertList: React.FC = () => {
         list: baseData,
         columns: [
             {
-                title: '#',
+                title: 'ID',
                 dataIndex: 'id',
                 key: 'id',
                 align: 'center',
-                render: (text: any, record: any, index: number) => `${index + 1}`
+                // render: (text: any, record: any, index: number) => `${index + 1}`
             },
             {
                 title: '网站',

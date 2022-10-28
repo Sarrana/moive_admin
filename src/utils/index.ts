@@ -109,3 +109,13 @@ export const isEqual = (obj1, obj2) => {
     }
     return true
 }
+
+// let [res, err] = await fn
+export const testAsyncApi = async (fn) => {
+    try {
+        let res = await fn
+        return [res, null]
+    } catch (err) {
+        return [null, err]
+    }
+}
