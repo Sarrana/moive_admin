@@ -209,7 +209,6 @@ export const ProductList = () => {
   }
 
   const onChange = (pageParams) => {
-    console.log('---- onChange ---');
     setCurrentPage(pageParams.current)
     setPageSize(pageParams.pageSize)
   }
@@ -236,19 +235,15 @@ export const ProductList = () => {
   }
 
   const onCancel = () => {
-    console.log('------onCancel----');
     setIsModalVisible(false)
   }
 
   const onOk = () => {
-    console.log('---onOk----');
     getDataList()
     setIsModalVisible(false)
   }
 
   const getDataList = async () => {
-    console.log('----- getDataList ----');
-
     setLoading(true)
     let params = {
       per_age: pageSize,
