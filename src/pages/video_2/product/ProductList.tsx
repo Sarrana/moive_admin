@@ -334,11 +334,10 @@ export const ProductList = () => {
       })
       console.log('------- dataList -----');
       console.log(dataList); */
-
       
       setDataSource(dataList)
     } catch (error) {
-
+      message.error(error.message || '网络错误，请稍后重试')
     } finally {
       setLoading(false)
     }
