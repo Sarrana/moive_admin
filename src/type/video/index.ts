@@ -1,3 +1,5 @@
+import { STATUS, VIPLEVLE, VIPTYPE } from "@/constants/video2"
+
 export type VideoUserInfo = {
     id?: number,
     nickname: string,
@@ -198,3 +200,80 @@ export const videoDefinitionOp = [
     { id: 3, label: '2k', value: '2k' },
     { id: 4, label: '4k', value: '4k' }
 ]
+
+
+// 视频管理-评论管理- 审核状态
+export const cmtStatusOp = [
+    { id: 1, label: '审核通过', value: '审核通过' },
+    { id: 0, label: '审核未通过', value: '审核未通过' }
+]
+
+// 视频管理-工单管理- 回复状态
+export const feedbackStatusOp = [
+    { id: 1, label: '已回复 ', value: '已回复 ' },
+    { id: 0, label: '未回复', value: '未回复' }
+]
+
+// 视频管理-版本管理-发布平台
+export const versionOSOP = [
+    { id: 1, label: '安卓', value: 'android ' },
+    { id: 2, label: 'iOS', value: 'ios ' },
+    { id: 3, label: '全部', value: 'all ' },
+]
+
+export type PayTypeBasedata = {
+    id: number
+    name: string
+    status: STATUS
+    order: number
+    ch_name: string
+    created_at: string
+    updated_at: string
+}
+
+export type PayGatewayBasedata = {
+    id: number
+    channel: string
+    img_url: string
+    name: string
+    order: number
+    status: STATUS
+    created_at: string
+    updated_at: string
+}
+
+
+export type ProductBasedata = {
+    id: number
+    type: VIPTYPE        //  1 vip. 2 金币 *
+    title: string        // * 
+    img: string         // 图片*
+    price: number       // 原价 *
+    buy_price: number   // 购买价格 *
+    vip_level: VIPLEVLE   //* vip等级 0普通 1黄金  2钻石  3皇冠
+    vip_day: number     //* vip天数
+    coins: number       //* 金币
+    status: STATUS      //* 0 下架   1上架 *
+    sort: number             // 排序
+    description: string // 描述*
+    updated_at: string
+    created_at: string
+}
+export const productTypeOP = [
+    { id: 1, label: 'vip', value: VIPTYPE.VIP },
+    { id: 2, label: '金币', value: VIPTYPE.COIN },
+]
+export const productVipLevelOP = [
+    { id: 0, label: '普通', value: VIPLEVLE.NORMAL },
+    { id: 1, label: '黄金', value: VIPLEVLE.GOLD },
+    { id: 2, label: '钻石', value: VIPLEVLE.DIAMOND },
+    { id: 3, label: '皇冠', value: VIPLEVLE.CROWN },
+]
+
+
+export type ProductPayBasedata = {
+    id: number
+    product_id: number    // 产品id
+    type_id: number         // 支付类型列表id
+    way_id: number           // 支付网关列表id
+}

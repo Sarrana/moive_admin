@@ -9,4 +9,26 @@ export const enum ADTYPE {
     INDEX_HOW_RECOMMAND = 7, // 首页-热映推荐列表广告 
 }
 
+// 状态枚举
+export const enum STATUS {
+    ON = '1',
+    OFF = '0'
+}
+
+
+// VIP 类型
+export const enum VIPTYPE {
+    VIP = 1,
+    COIN = 2
+}
+
+// VIP 等级
+export const enum VIPLEVLE {
+    NORMAL = 0,
+    GOLD = 1,
+    DIAMOND = 2,
+    CROWN = 3
+}
+
+
 

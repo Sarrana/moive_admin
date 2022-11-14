@@ -23,6 +23,10 @@ import VideoSeries from '@/pages/video_2/content/VideoSeries'
 import { VideoCmtList } from '@/pages/video_2/comment/VideoCmtList'
 import { VideoFeedbackList } from '@/pages/video_2/feedback/VideoFeedbackList'
 import { VersionMgr } from '@/pages/video_2/config/version'
+import { PayTypeList } from '@/pages/video_2/payment/PayTypeList'
+import { PayGatewayList } from '@/pages/video_2/payment/PayGatewayList'
+import { ProductList } from '@/pages/video_2/product/ProductList'
+import { ProductPayList } from '@/pages/video_2/product/ProductPayList'
 
 const videoRouer = [
     {
@@ -170,27 +174,6 @@ const videoRouer = [
             }
         ]
     },
-   /*  {
-        label: '评论管理',
-        path: 'CommentMgr',
-        submenus: true,
-        next: true,
-        children: [
-            {
-                label: '评论管理',
-                path: 'CommentList',
-                submenus: true,
-                element: <Outlet />,
-                children: [
-                    {
-                        index: true,
-                        element: <VideoContentList />
-                    },
-                ]
-            }
-        ]
-    }, */
-
     {
         label: '运营管理',
         path: 'operationMgr',
@@ -308,6 +291,48 @@ const videoRouer = [
         path: 'FeedbackMgr',
         submenus: true,
         element: <VideoFeedbackList />
+    },
+    {
+        label: '支付管理',
+        path: 'PayMgr',
+        submenus: true,
+        next: true,
+        children: [
+            {
+                label: '支付类型',
+                path: 'PayTypeList',
+                submenus: true,
+                element: <PayTypeList />
+
+            },
+            {
+                label: '支付网关',
+                path: 'PayGatewayList',
+                submenus: true,
+                element: <PayGatewayList />
+            }
+        ]
+    },
+    {
+        label: '产品管理',
+        path: 'ProductMgr',
+        submenus: true,
+        next: true,
+        children: [
+            {
+                label: '产品列表',
+                path: 'ProductList',
+                submenus: true,
+                element: <ProductList />
+
+            },
+            {
+                label: '产品支付配置',
+                path: 'ProductPayList',
+                submenus: true,
+                element: <ProductPayList />
+            }
+        ]
     }
 ]
 

@@ -335,9 +335,10 @@ export const getVersionListApi_2 = (params) => new Promise((resolve, reject) => 
         .catch(e => reject(e))
 })
 
-// 视频 - 配置管理 - 版本管理 - 获取版本列表
+// 视频 - 配置管理 - 版本管理 - 新增/修改
 export const updateVersionSaveApi_2 = (params) => new Promise((resolve, reject) => {
     axios.post('/api/admin/versions/save', params)
         .then(r => resolve(r))
         .catch(e => reject(e))
 })
+
