@@ -1,4 +1,4 @@
-import { STATUS, VIPLEVLE, VIPTYPE } from "@/constants/video2"
+import { ORDERSTATUS, STATUS, VIPLEVLE, VIPTYPE } from "@/constants/video2"
 
 export type VideoUserInfo = {
     id?: number,
@@ -221,6 +221,7 @@ export const versionOSOP = [
     { id: 3, label: '全部', value: 'all ' },
 ]
 
+// 视频管理-支付管理-支付类型
 export type PayTypeBasedata = {
     id: number
     name: string
@@ -231,6 +232,7 @@ export type PayTypeBasedata = {
     updated_at: string
 }
 
+// 视频管理-支付管理-支付网关
 export type PayGatewayBasedata = {
     id: number
     channel: string
@@ -242,7 +244,7 @@ export type PayGatewayBasedata = {
     updated_at: string
 }
 
-
+// 视频管理-产品管理-产品
 export type ProductBasedata = {
     id: number
     type: VIPTYPE        //  1 vip. 2 金币 *
@@ -259,10 +261,12 @@ export type ProductBasedata = {
     updated_at: string
     created_at: string
 }
+// 产品类型
 export const productTypeOP = [
     { id: 1, label: 'vip', value: VIPTYPE.VIP },
     { id: 2, label: '金币', value: VIPTYPE.COIN },
 ]
+// VIP等级
 export const productVipLevelOP = [
     { id: 0, label: '普通', value: VIPLEVLE.NORMAL },
     { id: 1, label: '黄金', value: VIPLEVLE.GOLD },
@@ -270,10 +274,42 @@ export const productVipLevelOP = [
     { id: 3, label: '皇冠', value: VIPLEVLE.CROWN },
 ]
 
-
+// // 视频管理-产品管理-产品支付配置
 export type ProductPayBasedata = {
     id: number
     product_id: number    // 产品id
     type_id: number         // 支付类型列表id
     way_id: number           // 支付网关列表id
 }
+
+export type OrderBaseData = {
+    id: number,
+    user_id: number,
+    product_id: number,
+    order_id: string,            // 平台订单号
+    app_order: string,         // 第三方订单号
+    descp: string,                        // 描述
+    order_type: number,
+    amount: number,
+    pay_amount: number,
+    payway: string,
+    pay_type_sdk: string,
+    pay_url: string,
+    status: ORDERSTATUS,                        // 订单状态: 0-未支付，2-支付中，3-支付完成，99-交易失败
+    msg: string,
+    channel: string,   // 渠道
+    updated_at: string,
+    created_at: string,
+    expired_at: null,
+    pay_type: string,
+    goods_info: null,
+    build_id: string
+}
+// 订单状态
+export const orderStatusOP = [
+    { id: 0, label: '未支付', value: ORDERSTATUS.NOTPAY },
+    { id: 1, label: '支付中', value: ORDERSTATUS.PAYING },
+    { id: 2, label: '已支付', value: ORDERSTATUS.PAID },
+    { id: 3, label: '交易失败', value: ORDERSTATUS.FAIL },
+]
+

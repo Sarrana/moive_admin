@@ -27,6 +27,7 @@ import { PayTypeList } from '@/pages/video_2/payment/PayTypeList'
 import { PayGatewayList } from '@/pages/video_2/payment/PayGatewayList'
 import { ProductList } from '@/pages/video_2/product/ProductList'
 import { ProductPayList } from '@/pages/video_2/product/ProductPayList'
+import { OrderList } from '@/pages/video_2/order'
 
 const videoRouer = [
     {
@@ -333,7 +334,13 @@ const videoRouer = [
                 element: <ProductPayList />
             }
         ]
-    }
+    },
+    {
+        label: '订单管理',
+        path: 'OrderMgr',
+        submenus: true,
+        element: <OrderList />
+    },
 ]
 
 export default videoRouer

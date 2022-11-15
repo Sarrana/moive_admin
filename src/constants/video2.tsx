@@ -30,5 +30,13 @@ export const enum VIPLEVLE {
     CROWN = 3
 }
 
+// 订单状态
+export const enum ORDERSTATUS {
+    NOTPAY = 0,
+    PAYING = 2,
+    PAID = 3,
+    FAIL = 99
+}
+
 
 
