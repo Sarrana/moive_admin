@@ -38,5 +38,11 @@ export const enum ORDERSTATUS {
     FAIL = 99
 }
 
+// 广告终端 枚举
+export const enum ADTERMINAL {
+    WEB = '1',
+    APP = '2'
+}
+
 
 

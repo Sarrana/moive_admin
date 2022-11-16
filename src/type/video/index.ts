@@ -313,3 +313,11 @@ export const orderStatusOP = [
     { id: 3, label: '交易失败', value: ORDERSTATUS.FAIL },
 ]
 
+// AppAnnouncementBaseData
+export type AppAnnouncementBaseData = {
+    id: number,
+    content: string,
+    status: STATUS,
+    created_at: string,
+    updated_at: string,
+}

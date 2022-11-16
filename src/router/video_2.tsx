@@ -17,7 +17,6 @@ import { WantSee, ErrorFb } from '@/pages/video_2/operation'
 import { VideoGold } from '@/pages/video_2/operation/gold'
 import { VideoExamineList } from '@/pages/video_2/content/examine/VideoExamineList'
 import PlayerPage from '@/pages/video_2/preview'
-import Announcement from '@/pages/video_2/config/announcement'
 import MediaStatistics from '@/pages/video_2/dashboard/mediaStatistics'
 import VideoSeries from '@/pages/video_2/content/VideoSeries'
 import { VideoCmtList } from '@/pages/video_2/comment/VideoCmtList'
@@ -28,6 +27,7 @@ import { PayGatewayList } from '@/pages/video_2/payment/PayGatewayList'
 import { ProductList } from '@/pages/video_2/product/ProductList'
 import { ProductPayList } from '@/pages/video_2/product/ProductPayList'
 import { OrderList } from '@/pages/video_2/order'
+import { Announcement } from '@/pages/video_2/config/announcement'
 
 const videoRouer = [
     {
@@ -251,7 +251,7 @@ const videoRouer = [
                 label: '系统公告',
                 path: 'Announcement',
                 submenus: true,
-                element: <Announcement />
+                element: <Announcement />,
             },
             {
                 label: '版本管理',

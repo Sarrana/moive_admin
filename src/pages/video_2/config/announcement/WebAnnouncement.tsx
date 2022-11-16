@@ -1,4 +1,4 @@
-/* import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Form, Input, message, Switch } from 'antd'
 import { fetchAnnouncementApi, updateAnnouncementApi } from '@/request'
 
@@ -6,7 +6,7 @@ type ParamsDataType = {
     status: boolean
     content: string
 }
-const Announcement: React.FC = () => {
+export const WebAnnouncement: React.FC = () => {
     const [form] = Form.useForm();
     const [isParams, setParams] = useState<ParamsDataType>(null)
     const changeStatus = (value: boolean) => {
@@ -42,7 +42,7 @@ const Announcement: React.FC = () => {
         updateAnnouncementApi(params)
             .then((res: any) => {
                 if (res.code == 200) {
-                    message.success(res.message)
+                    message.success(res.data.message || '操作成功')
                 } else {
                     message.info(res.message)
                 }
@@ -92,23 +92,3 @@ const Announcement: React.FC = () => {
         </Card>
     )
 }
-
-export default Announcement
- */
-
-import { Tabs } from "antd"
-import { AppAnnouncement } from "./AppAnnouncement"
-import { WebAnnouncement } from "./WebAnnouncement"
-
-
-
-export const Announcement: React.FC = () => (
-    <Tabs defaultActiveKey="1">
-        <Tabs.TabPane tab="Web 系统公告" key="1">
-            <WebAnnouncement />
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="App 公告" key="2">
-            <AppAnnouncement />
-        </Tabs.TabPane>
-    </Tabs>
-)

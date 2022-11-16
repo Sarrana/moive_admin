@@ -203,7 +203,7 @@ export const VideoAdvertList: React.FC = () => {
                 render: (v: any, item: any) => (
                     <Space>
                         <Button type="link" size="small" onClick={() => { handleItem(item) }}>编辑</Button>
-                        <Button type="link" size="small" onClick={() => { onSetAd(item.id) }}>广告位设置</Button>
+                        <Button type="link" size="small" onClick={() => { onSetAd(item.id, item) }}>广告位设置</Button>
                         <Button type="link" size="small" onClick={() => { handleDel(item.id) }}>删除</Button>
                     </Space>
                 ),
@@ -233,8 +233,10 @@ export const VideoAdvertList: React.FC = () => {
 
         })
     }
-    const onSetAd = (id: number) => {
-        navigate(`/Dbo/VideoAdvert/Setting?posId=${id}`, { state: { page, per_page, searchParamsData }, replace: false })
+    const onSetAd = (id: number, item) => {
+        // console.log(item);
+        
+        navigate(`/Dbo/VideoAdvert/Setting?posId=${id}&terminal=${item.terminal}`, { state: { page, per_page, searchParamsData }, replace: false })
     }
 
     const [baseDetail, setBaseDetail] = useState(null)

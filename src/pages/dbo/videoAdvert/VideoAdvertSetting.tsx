@@ -6,8 +6,10 @@ import BaseTable from '@/components/base/BaseTable'
 import { ImgUploader } from '@/components/upload';
 import { getSearchParams } from '@/utils';
 import DebounceSelect from '@/components/debounceSelect';
+import { ADTERMINAL } from '@/constants/video2';
 
 type AddModalPropType = {
+    obj: any,
     dataSource: any
     visible: boolean
     handleCancel: () => void
@@ -15,7 +17,7 @@ type AddModalPropType = {
 }
 
 const AddModal: React.FC<AddModalPropType> = (P) => {
-    const { dataSource, visible, handleCancel, handleOk } = P
+    const { dataSource, visible, handleCancel, handleOk, obj } = P
     // console.log(111, dataSource)
     const [form] = Form.useForm();
     const [status, setStatus] = useState(dataSource.status);
@@ -70,6 +72,13 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
             })
         })
     }
+    useEffect(() => {
+        console.log();
+        
+      console.log(obj);
+      
+    }, [])
+    
 
     return (
         <Modal
@@ -104,14 +113,18 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
                                 accept="image/jpeg,image/png,image/gif,image/webp,image/avif"
                                 maxCount={1} />
                         </Form.Item>
-                        <Form.Item label="PC端" name="upper_pc" initialValue={dataSource?.image_url} rules={[{ required: true, message: '请上传图片' }]}>
-                            <ImgUploader
-                                label="上传"
-                                file_type="pic"
-                                category="bannerpic"
-                                accept="image/jpeg,image/png,image/gif,image/webp,image/avif"
-                                maxCount={1} />
-                        </Form.Item>
+                        {
+                            obj.terminal == ADTERMINAL.WEB
+                            && <Form.Item label="PC端" name="upper_pc" initialValue={dataSource?.image_url} rules={[{ required: true, message: '请上传图片' }]}>
+                                <ImgUploader
+                                    label="上传"
+                                    file_type="pic"
+                                    category="bannerpic"
+                                    accept="image/jpeg,image/png,image/gif,image/webp,image/avif"
+                                    maxCount={1} />
+                            </Form.Item>
+                        }
+
                     </Space>
                 </Form.Item>
                 {/* <Form.Item label="链接位置" name="link_url" initialValue={dataSource?.link_url} rules={[{ required: true, message: '请输入链接位置' }]}> */}
@@ -120,7 +133,8 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
                         placeholder="请输入链接位置"
                         allowClear />
                 </Form.Item>
-                <Form.Item label="视频名称" name="video" initialValue={dataSource.id ? [{ key: dataSource.video_id, label: dataSource.video_name, value: dataSource.video_id }] : []} rules={[{ required: true, message: '请输入视频名称' }]}>
+                {/* <Form.Item label="视频名称" name="video" initialValue={dataSource.id ? [{ key: dataSource.video_id, label: dataSource.video_name, value: dataSource.video_id }] : []} rules={[{ required: true, message: '请输入视频名称' }]}> */}
+                <Form.Item label="视频名称" name="video" initialValue={dataSource.id ? [{ key: dataSource.video_id, label: dataSource.video_name, value: dataSource.video_id }] : []} >
                     <DebounceSelect
                         mode="multiple"
                         value={videoValue}
@@ -144,6 +158,7 @@ export const VideoAdvertSetting: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const obj = getSearchParams(searchParams);
 
+    console.log(obj);
     const onBack = () => {
         navigate('/Dbo/VideoAdvert', { state: location.state, replace: false });
     }
@@ -153,7 +168,7 @@ export const VideoAdvertSetting: React.FC = () => {
     const [per_page, setPer_page] = useState<number>(10)
     const [page, setPage] = useState<number>(1)
     const [dataTotal, setDataTotal] = useState<number>(0)
-    const paramsData = {
+    let paramsData = {
         list: baseData,
         columns: [
             {
@@ -163,13 +178,13 @@ export const VideoAdvertSetting: React.FC = () => {
                 align: 'center',
                 render: (text: any, record: any, index: number) => `${index + 1}`
             },
-            {
+           /*  {
                 title: 'PC图片',
                 dataIndex: 'image_url',
                 key: 'image_url',
                 align: 'center',
                 render: (_: any, item) => (<Image style={{ width: 80 }} src={item.image_url} />)
-            },
+            }, */
             {
                 title: '移动图片',
                 dataIndex: 'mobile_image_url',
@@ -229,6 +244,17 @@ export const VideoAdvertSetting: React.FC = () => {
         showPagination: true,
         page: { dataTotal, page, size: per_page }
     }
+    if (obj.terminal == ADTERMINAL.WEB) {
+        let column = {
+            title: 'PC图片',
+            dataIndex: 'image_url',
+            key: 'image_url',
+            align: 'center',
+            render: (_: any, item) => (<Image style={{ width: 80 }} src={item.image_url} />)
+        }
+        paramsData.columns.splice(1,0, column)
+    }
+
     const onChange = (pageParams) => {
         setPage(pageParams.current)
         setPer_page(pageParams.pageSize)
@@ -264,6 +290,7 @@ export const VideoAdvertSetting: React.FC = () => {
 
     const modalConfirm = (params) => {
         const operationApi = params.id ? editVideoAdApi : addVideoAdApi
+
         operationApi(obj.posId, params).then((res: any) => {
             message.success(res.message)
             modalCancel()
@@ -312,6 +339,7 @@ export const VideoAdvertSetting: React.FC = () => {
             {baseDetail
                 && (
                     <AddModal
+                        obj={obj}
                         dataSource={baseDetail}
                         visible={visibleModal}
                         handleOk={modalConfirm}

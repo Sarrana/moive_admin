@@ -27,15 +27,19 @@ export const stateOp = [
     { id: 2, label: '关', value: '关' }
 ]
 
+
 export const terminalOp = [
     { id: 1, label: 'web', value: 'web' },
     { id: 2, label: 'h5', value: 'h5' }
 ]
 
+
 export const resultOp = [
     { id: 1, label: '有', value: '有' },
     { id: 2, label: '无', value: '无' }
 ]
+
+
 
 export const userTypeOp = [
     { id: 1, label: '邮箱注册', value: '邮箱注册' },

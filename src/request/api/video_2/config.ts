@@ -309,7 +309,7 @@ export const searchActorInfoApi_2 = (params) => new Promise((resolve, reject) =>
 })
 
 /**
- * 系统公告
+ * 系统公告-web
  */
 export const fetchAnnouncementApi = () => new Promise((resolve, reject) => {
     axios.get('/api/admin/video/video_notice_show')
@@ -318,13 +318,31 @@ export const fetchAnnouncementApi = () => new Promise((resolve, reject) => {
         })
         .catch((e) => { reject(e) })
 })
-
 // 
 export const updateAnnouncementApi = (params) => new Promise((resolve, reject) => {
     axios.post('/api/admin/video/video_notice_add', params)
         .then((r) => {
             resolve(r)
         })
+        .catch((e) => { reject(e) })
+})
+
+// 系统公告- APP公告 - app公告列表
+export const getAppAnnouncementListApi_2 = (params) => new Promise((resolve, reject) => {
+    axios.post('/api/admin/app_notice/list', params)
+        .then((r) => { resolve(r) })
+        .catch((e) => { reject(e) })
+})
+// 系统公告- APP公告 - app公告新增/修改
+export const updateAppAnnouncementApi_2 = (params) => new Promise((resolve, reject) => {
+    axios.post('/api/admin/app_notice/save', params)
+        .then((r) => { resolve(r) })
+        .catch((e) => { reject(e) })
+})
+// 系统公告- APP公告 - app公告删除
+export const delAppAnnouncementApi_2 = (params) => new Promise((resolve, reject) => {
+    axios.post('/api/admin/app_notice/del', params)
+        .then((r) => { resolve(r) })
         .catch((e) => { reject(e) })
 })
 
