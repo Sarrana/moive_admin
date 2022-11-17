@@ -28,6 +28,7 @@ import { ProductList } from '@/pages/video_2/product/ProductList'
 import { ProductPayList } from '@/pages/video_2/product/ProductPayList'
 import { OrderList } from '@/pages/video_2/order'
 import { Announcement } from '@/pages/video_2/config/announcement'
+import { NewUploadList } from '@/pages/video_2/content/newUpload/NewUploadList'
 
 const videoRouer = [
     {
@@ -138,6 +139,12 @@ const videoRouer = [
                 path: 'ExamineMgr',
                 submenus: true,
                 element: <VideoExamineList />
+            },
+            {
+                label: '最新上传',
+                path: 'NewUploadMgr',
+                submenus: true,
+                element: <NewUploadList />
             },
             {
                 label: '内容预发',

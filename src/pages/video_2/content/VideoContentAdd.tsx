@@ -440,7 +440,7 @@ export const VideoContentAdd = () => {
                                                 <Button type="primary" danger htmlType="submit">保存</Button>
                                             </Form.Item>
                                             <Form.Item style={{ margin: 0 }}>
-                                                <Button htmlType="button" onClick={onCancel}>取消</Button>
+                                                <Button htmlType="button" onClick={onCancel}>重置</Button>
                                             </Form.Item>
                                             <Form.Item style={{ margin: 0 }}>
                                                 <Button type="primary" onClick={onBack}>返回</Button>
