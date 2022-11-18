@@ -25,7 +25,7 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
     const onFinish = () => {
         form.validateFields().then((values: any) => {
             console.log('values ', values);
-            if (values.upper_mb.some((v) => v.status == "uploading") || values.upper_pc.some((v) => v.status == "uploading")) {
+            if (values.upper_mb && values.upper_mb.some((v) => v.status == "uploading") || values.upper_pc && values.upper_pc.some((v) => v.status == "uploading")) {
                 message.warn('请等待图片上传完成');
                 return;
             }
@@ -37,6 +37,8 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
             if (values.upper_pc && values.upper_pc.length) {
                 upper_pc = values.upper_pc[0].url
             }
+            console.log(values);
+            
             handleOk({
                 id: dataSource.id,
                 mobile_image_url: upper_mb,
