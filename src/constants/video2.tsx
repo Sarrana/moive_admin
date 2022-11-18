@@ -44,5 +44,10 @@ export const enum ADTERMINAL {
     APP = '2'
 }
 
+// banner 类型
+export const enum BANNERTYPE {
+    ADLINK = '1',
+    VIDEO = '2'
+}
 
 

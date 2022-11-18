@@ -1,4 +1,4 @@
-import { ORDERSTATUS, STATUS, VIPLEVLE, VIPTYPE } from "@/constants/video2"
+import { BANNERTYPE, ORDERSTATUS, STATUS, VIPLEVLE, VIPTYPE } from "@/constants/video2"
 
 export type VideoUserInfo = {
     id?: number,
@@ -321,3 +321,9 @@ export type AppAnnouncementBaseData = {
     created_at: string,
     updated_at: string,
 }
+
+// banner 类型
+export const bannerTypeOP = [
+    { id: 1, label: '外部广告', value: BANNERTYPE.ADLINK },
+    { id: 2, label: '内部视频', value: BANNERTYPE.VIDEO },
+]

@@ -6,7 +6,8 @@ import BaseTable from '@/components/base/BaseTable'
 import { ImgUploader } from '@/components/upload';
 import { getSearchParams } from '@/utils';
 import DebounceSelect from '@/components/debounceSelect';
-import { ADTERMINAL } from '@/constants/video2';
+import { ADTERMINAL, BANNERTYPE } from '@/constants/video2';
+import { bannerTypeOP } from '@/type';
 
 type AddModalPropType = {
     obj: any,
@@ -24,7 +25,7 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
 
     const onFinish = () => {
         form.validateFields().then((values: any) => {
-            console.log('values ', values);
+            // console.log('values ', values);
             if (values.upper_mb && values.upper_mb.some((v) => v.status == "uploading") || values.upper_pc && values.upper_pc.some((v) => v.status == "uploading")) {
                 message.warn('请等待图片上传完成');
                 return;
@@ -37,16 +38,19 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
             if (values.upper_pc && values.upper_pc.length) {
                 upper_pc = values.upper_pc[0].url
             }
+            console.log('------- values ------');
             console.log(values);
+            console.log('------ selType -----', selType);
             
+
             handleOk({
                 id: dataSource.id,
                 mobile_image_url: upper_mb,
                 image_url: upper_pc,
-                link_url: values.link_url,
+                link_url: selType == BANNERTYPE.ADLINK ? values.link_url : '',
                 sort: values.sort,
-                title: values.video[0]?.label || '',
-                video_id: values.video[0]?.value || null,
+                title: selType == BANNERTYPE.VIDEO ? values?.video[0]?.label : values.title,
+                video_id: selType == BANNERTYPE.VIDEO ? values?.video[0]?.value : null,
                 status: status
             });
         }).catch((errorInfo) => {
@@ -58,6 +62,20 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
         const p = e ? '1' : '2';
         form.setFieldsValue({ status: p });
         setStatus(p);
+    }
+
+    const bannerType = dataSource.link_url ? BANNERTYPE.ADLINK : BANNERTYPE.VIDEO
+    const [selType, setSelType] = useState(bannerType)
+    const changeSelectType = (value) => {
+        
+        if (value == BANNERTYPE.ADLINK) {
+            form.setFieldsValue({'video': null})
+        } else {
+            form.setFieldsValue({'title': ''})
+        }
+        // console.log(value);
+        // console.log(form.getFieldsValue());
+        setSelType(value)
     }
 
     const [videoValue, setVideoValue] = useState([]);
@@ -75,12 +93,10 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
         })
     }
     useEffect(() => {
-        console.log();
-        
-      console.log(obj);
-      
+        console.log(dataSource);
+
     }, [])
-    
+
 
     return (
         <Modal
@@ -129,21 +145,46 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
 
                     </Space>
                 </Form.Item>
-                {/* <Form.Item label="链接位置" name="link_url" initialValue={dataSource?.link_url} rules={[{ required: true, message: '请输入链接位置' }]}> */}
-                <Form.Item label="链接位置" name="link_url" initialValue={dataSource?.link_url}>
-                    <Input
-                        placeholder="请输入链接位置"
-                        allowClear />
+                <Form.Item label="banner类型" name="selType" rules={[{ required: true, message: '请选择banner类型' }]}>
+                    <Select onSelect={changeSelectType} defaultValue={selType}>
+                        {
+                            bannerTypeOP.map(item => (
+                                <Select.Option value={item.value} key={item.value}>
+                                    {item.label}
+                                </Select.Option>
+                            ))
+                        }
+                    </Select>
                 </Form.Item>
                 {/* <Form.Item label="视频名称" name="video" initialValue={dataSource.id ? [{ key: dataSource.video_id, label: dataSource.video_name, value: dataSource.video_id }] : []} rules={[{ required: true, message: '请输入视频名称' }]}> */}
-                <Form.Item label="视频名称" name="video" initialValue={dataSource.id ? [{ key: dataSource.video_id, label: dataSource.video_name, value: dataSource.video_id }] : []} >
-                    <DebounceSelect
-                        mode="multiple"
-                        value={videoValue}
-                        fetchOptions={fetchVideoList}
-                        onChange={(newValue) => { setVideoValue(newValue) }}
-                        style={{ width: '100%' }} />
-                </Form.Item>
+                {
+                    selType == BANNERTYPE.VIDEO
+                    && <Form.Item label="视频名称" name="video" initialValue={dataSource.video_id ? [{ key: dataSource.video_id, label: dataSource.video_name, value: dataSource.video_id }] : []} rules={[{ required: true, message: '请输入视频名称' }]}>
+                        <DebounceSelect
+                            mode="multiple"
+                            value={videoValue}
+                            fetchOptions={fetchVideoList}
+                            onChange={(newValue) => { setVideoValue(newValue) }}
+                            style={{ width: '100%' }} />
+                    </Form.Item>
+                }
+                {
+                    selType == BANNERTYPE.ADLINK
+                    &&
+                    <>
+                        <Form.Item label="链接位置" name="link_url" initialValue={dataSource?.link_url} rules={[{ required: true, message: '请输入链接位置' }]}>
+                            <Input
+                                placeholder="请输入链接位置"
+                                allowClear />
+                        </Form.Item>
+                        <Form.Item label="广告标题" name="title" initialValue={dataSource?.title} rules={[{ required: true, message: '请输入广告标题' }]}>
+                            <Input></Input>
+                        </Form.Item>
+                    </>
+
+                }
+
+
                 <Form.Item label="排序" name="sort" initialValue={dataSource?.sort} rules={[{ required: true, message: '请输入排序' }]}>
                     <InputNumber min={1} placeholder="请输入排序" style={{ width: '100%' }} />
                 </Form.Item>
@@ -180,13 +221,13 @@ export const VideoAdvertSetting: React.FC = () => {
                 align: 'center',
                 render: (text: any, record: any, index: number) => `${index + 1}`
             },
-           /*  {
-                title: 'PC图片',
-                dataIndex: 'image_url',
-                key: 'image_url',
-                align: 'center',
-                render: (_: any, item) => (<Image style={{ width: 80 }} src={item.image_url} />)
-            }, */
+            /*  {
+                 title: 'PC图片',
+                 dataIndex: 'image_url',
+                 key: 'image_url',
+                 align: 'center',
+                 render: (_: any, item) => (<Image style={{ width: 80 }} src={item.image_url} />)
+             }, */
             {
                 title: '移动图片',
                 dataIndex: 'mobile_image_url',
@@ -254,7 +295,7 @@ export const VideoAdvertSetting: React.FC = () => {
             align: 'center',
             render: (_: any, item) => (<Image style={{ width: 80 }} src={item.image_url} />)
         }
-        paramsData.columns.splice(1,0, column)
+        paramsData.columns.splice(1, 0, column)
     }
 
     const onChange = (pageParams) => {
@@ -291,6 +332,7 @@ export const VideoAdvertSetting: React.FC = () => {
     }
 
     const modalConfirm = (params) => {
+        console.log(params);
         const operationApi = params.id ? editVideoAdApi : addVideoAdApi
 
         operationApi(obj.posId, params).then((res: any) => {
