@@ -38,11 +38,6 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
             if (values.upper_pc && values.upper_pc.length) {
                 upper_pc = values.upper_pc[0].url
             }
-            console.log('------- values ------');
-            console.log(values);
-            console.log('------ selType -----', selType);
-            
-
             handleOk({
                 id: dataSource.id,
                 mobile_image_url: upper_mb,
@@ -67,14 +62,6 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
     const bannerType = dataSource.link_url ? BANNERTYPE.ADLINK : BANNERTYPE.VIDEO
     const [selType, setSelType] = useState(bannerType)
     const changeSelectType = (value) => {
-        
-        if (value == BANNERTYPE.ADLINK) {
-            form.setFieldsValue({'video': null})
-        } else {
-            form.setFieldsValue({'title': ''})
-        }
-        // console.log(value);
-        // console.log(form.getFieldsValue());
         setSelType(value)
     }
 
@@ -92,12 +79,6 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
             })
         })
     }
-    useEffect(() => {
-        console.log(dataSource);
-
-    }, [])
-
-
     return (
         <Modal
             title={dataSource.id ? '编辑' : '创建'}
@@ -201,7 +182,7 @@ export const VideoAdvertSetting: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const obj = getSearchParams(searchParams);
 
-    console.log(obj);
+    // console.log(obj);
     const onBack = () => {
         navigate('/Dbo/VideoAdvert', { state: location.state, replace: false });
     }
@@ -332,7 +313,7 @@ export const VideoAdvertSetting: React.FC = () => {
     }
 
     const modalConfirm = (params) => {
-        console.log(params);
+        // console.log(params);
         const operationApi = params.id ? editVideoAdApi : addVideoAdApi
 
         operationApi(obj.posId, params).then((res: any) => {
