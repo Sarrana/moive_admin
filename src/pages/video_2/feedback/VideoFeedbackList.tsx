@@ -247,6 +247,10 @@ export const VideoFeedbackList: React.FC = () => {
     const handleCancel = () => {
         setIsModalVisible(false)
     }
+    const handleOk = () => {
+        setIsModalVisible(false)
+        getDataList()
+    }
 
     return (
         <>
@@ -272,6 +276,7 @@ export const VideoFeedbackList: React.FC = () => {
                         visible={isModalVisible}
                         selectedUserId={selectedUserId}
                         onCancel={handleCancel}
+                        onOk={handleOk}
                     />
                     : null
 

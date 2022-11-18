@@ -20,7 +20,8 @@ interface DataType {
 interface FeedbackDetailProps {
     visible: boolean
     selectedUserId: string
-    onCancel: () => void
+    onCancel: () => void,
+    onOk: () => void
 }
 
 enum REPLYTYPE {
@@ -29,7 +30,7 @@ enum REPLYTYPE {
 }
 
 function FeedbackDetail(props: FeedbackDetailProps) {
-    const { visible, selectedUserId, onCancel } = props
+    const { visible, selectedUserId, onCancel, onOk } = props
     // const [initLoading, setInitLoading] = useState(true);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<DataType[]>([]);
@@ -75,7 +76,7 @@ function FeedbackDetail(props: FeedbackDetailProps) {
             }
             let res: any = await setFeedbackReplyApi_2(params)
             message.success(res?.message)
-            onCancel()
+            onOk()
         } catch (err) {
 
         }
