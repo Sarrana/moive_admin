@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Row, Col, Card, message, Switch, Modal, Form, Input, Select, Space } from 'antd'
+import { Button, Row, Col, Card, message, Switch, Modal, Form, Input, Select, Space, Popconfirm } from 'antd'
 import BaseTable from '@/components/base/BaseTable'
 import SearchForm, { SearchFormItem, SelectOpType } from '@/components/searchForm';
 import { Moment } from 'moment/moment'
@@ -204,7 +204,10 @@ export const VideoAdvertList: React.FC = () => {
                     <Space>
                         <Button type="link" size="small" onClick={() => { handleItem(item) }}>编辑</Button>
                         <Button type="link" size="small" onClick={() => { onSetAd(item.id, item) }}>广告位设置</Button>
-                        <Button type="link" size="small" onClick={() => { handleDel(item.id) }}>删除</Button>
+                        {/* <Popconfirm title="确定删除？" onConfirm={() => { handleDel(item.id) }}>
+                            <Button type="link" size="small">删除</Button>
+                        </Popconfirm> */}
+
                     </Space>
                 ),
                 align: 'center'
@@ -235,7 +238,7 @@ export const VideoAdvertList: React.FC = () => {
     }
     const onSetAd = (id: number, item) => {
         // console.log(item);
-        
+
         navigate(`/Dbo/VideoAdvert/Setting?posId=${id}&terminal=${item.terminal}`, { state: { page, per_page, searchParamsData }, replace: false })
     }
 

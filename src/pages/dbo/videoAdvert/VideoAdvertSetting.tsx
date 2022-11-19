@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { Button, Row, Col, Card, message, Switch, Modal, Form, Input, Select, Space, Image, InputNumber, Tooltip } from 'antd'
+import { Button, Row, Col, Card, message, Switch, Modal, Form, Input, Select, Space, Image, InputNumber, Tooltip, Popconfirm } from 'antd'
 import { getVideoAdListApi, editVideoAdApi, delVideoAdApi, getVideoOpApi, addVideoAdApi } from '@/request'
 import BaseTable from '@/components/base/BaseTable'
 import { ImgUploader } from '@/components/upload';
@@ -25,7 +25,7 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
 
     const onFinish = () => {
         form.validateFields().then((values: any) => {
-            // console.log('values ', values);
+            console.log('values ', values);
             if (values.upper_mb && values.upper_mb.some((v) => v.status == "uploading") || values.upper_pc && values.upper_pc.some((v) => v.status == "uploading")) {
                 message.warn('请等待图片上传完成');
                 return;
@@ -126,7 +126,7 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
 
                     </Space>
                 </Form.Item>
-                <Form.Item label="banner类型" name="selType" rules={[{ required: true, message: '请选择banner类型' }]}>
+                <Form.Item label="banner类型" name="selType" initialValue={selType} rules={[{ required: true, message: '请选择banner类型' }]}>
                     <Select onSelect={changeSelectType} defaultValue={selType}>
                         {
                             bannerTypeOP.map(item => (
@@ -259,7 +259,10 @@ export const VideoAdvertSetting: React.FC = () => {
                 render: (v: any, item: any) => (
                     <Space>
                         <Button type="link" size="small" onClick={() => { handleItem(item) }}>编辑</Button>
-                        <Button type="link" size="small" onClick={() => { handleDel(item.id) }}>删除</Button>
+                        <Popconfirm title="确定删除？" onConfirm={() => {handleDel(item.id)}}>
+                            <Button type="link" size="small">删除</Button>
+                        </Popconfirm>
+                        {/* <Button type="link" size="small" onClick={() => { handleDel(item.id) }}>删除</Button> */}
                     </Space>
                 ),
                 align: 'center'
@@ -317,7 +320,7 @@ export const VideoAdvertSetting: React.FC = () => {
         const operationApi = params.id ? editVideoAdApi : addVideoAdApi
 
         operationApi(obj.posId, params).then((res: any) => {
-            message.success(res.message)
+            message.success(res.message || '操作成功')
             modalCancel()
             initData()
         }).catch((e) => { })
