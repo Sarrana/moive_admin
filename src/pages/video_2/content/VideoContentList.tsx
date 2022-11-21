@@ -276,10 +276,16 @@ export const VideoContentList = () => {
             render: (text: any, item: any) => (item.introduction.length > 30 ? `${item.introduction.slice(0, 30)}...` : item.introduction),
             align: 'center'
         },
+        // {
+        //     title: '付费',
+        //     dataIndex: 'is_free_text',
+        //     key: 'is_free_text',
+        //     align: 'center'
+        // },
         {
-            title: '付费',
-            dataIndex: 'is_free_text',
-            key: 'is_free_text',
+            title: '操作人ID',
+            dataIndex: 'user_id',
+            key: 'user_id',
             align: 'center'
         },
         {
