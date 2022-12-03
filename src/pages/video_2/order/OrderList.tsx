@@ -240,7 +240,7 @@ export const OrderList = () => {
 
   return (
     <>
-      <Row>
+      <Row  gutter={[12, 30]}>
         <Col span={24}>
           <SearchForm
             formList={formList}

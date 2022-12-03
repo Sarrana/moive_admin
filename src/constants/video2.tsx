@@ -50,4 +50,10 @@ export const enum BANNERTYPE {
     VIDEO = '2'
 }
 
+export const enum DATACOLOR {
+    REGISTER = '#ff9900',
+    ADD = '#ee6666',
+    ACTIVE = '#73c0de'
+}
+
 

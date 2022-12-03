@@ -29,6 +29,7 @@ import { ProductPayList } from '@/pages/video_2/product/ProductPayList'
 import { OrderList } from '@/pages/video_2/order'
 import { Announcement } from '@/pages/video_2/config/announcement'
 import { NewUploadList } from '@/pages/video_2/content/newUpload/NewUploadList'
+import { AppAnalyze } from '@/pages/video_2/dashboard/appAnalyze/AppAnalyze'
 
 const videoRouer = [
     {
@@ -42,6 +43,12 @@ const videoRouer = [
                 path: 'StatisticsUser',
                 submenus: true,
                 element: <StatisticsUser />
+            },
+            {
+                label: 'APP用户分析',
+                path: 'AppAnalyze',
+                submenus: true,
+                element: <AppAnalyze />
             },
             {
                 label: '视频分析',

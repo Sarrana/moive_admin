@@ -164,3 +164,17 @@ export const postUserRegStatisticslApi = (data: FormData) => new Promise((resolv
         })
         .catch((e) => { reject(e) })
 })
+
+
+export const getAppLogTodayApi = () => new Promise((resolve, reject) => {
+    axios.post('/api/admin/app_logs/now')
+    .then(r => resolve(r))
+    .catch(e => reject(e))
+})
+
+export const getAppLogUserDailyApi = (params) => new Promise((resolve, reject) => {
+    axios.post('/api/admin/app_logs/list', params)
+    .then(r => resolve(r))
+    .catch(e => reject(e))
+})
+
