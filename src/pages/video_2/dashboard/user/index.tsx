@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Space, Row, Col, Form, Statistic, Card, Radio, RadioChangeEvent, message, DatePicker, Button } from 'antd'
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
 import ReactECharts from 'echarts-for-react'
+import './index.scss'
 
 import { Moment } from 'moment/moment'
 import { postUserCountStatisticslApi, postMediaStatisticsFilterApi, postUserCreateStatisticslApi, postUserVisitStatisticslApi, postUserRegStatisticslApi } from '@/request'
