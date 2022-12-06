@@ -1,6 +1,6 @@
 import BaseTable from '@/components/base/BaseTable'
 import SearchForm, { SearchFormItem, SelectOpType } from '@/components/searchForm'
-import { DATACOLOR, ORDERSTATUS } from '@/constants/video2'
+import { DATACOLOR, LASTDAYS, ORDERSTATUS } from '@/constants/video2'
 import { getAppLogTodayApi, getAppLogUserDailyApi } from '@/request'
 import { getOrderListApi_2 } from '@/request/api/video_2/order'
 import { OrderBaseData, orderStatusOP } from '@/type'
@@ -10,6 +10,9 @@ import Select from 'rc-select'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ReactECharts from 'echarts-for-react'
+
+import './index.scss'
+import moment from 'moment'
 
 type QueryParamType = {
   start_time: string
@@ -45,6 +48,7 @@ export const AppAnalyze = () => {
   useEffect(() => {
     getDataList()
     getTodayData()
+    getRecent15Data()
   }, [currentPage, pageSize, queryParam])
 
   const linOption = {
@@ -102,32 +106,6 @@ export const AppAnalyze = () => {
   }
 
   const formList = useMemo<SearchFormItem[]>(() => [
-    /* {
-      name: 'user_id',
-      placeholder: '用户ID搜索',
-      type: 'input',
-      width: 100
-    },
-    {
-      name: 'product_id',
-      placeholder: '产品ID搜索',
-      type: 'input',
-      width: 100
-    },
-    {
-      name: 'order_id',
-      placeholder: '订单ID搜索',
-      type: 'input',
-      width: 100
-    },
-    {
-      name: 'status',
-      placeholder: '状态',
-      type: 'select',
-      width: 100,
-      selectOp: orderStatusOP,
-      selectOpRender: (item: SelectOpType) => <Select.Option value={item.value} key={item.id}>{item.label}</Select.Option>
-    }, */
     {
       name: 'date',
       type: 'rangePicker'
@@ -216,6 +194,47 @@ export const AppAnalyze = () => {
       setTotal(res.data.total)
       setPageSize(res.data.per_page)
       setDataSource(res.data.data)
+      // let data = {
+      //   xAxis: [],
+      //   legend: ['注册', '新增', '活跃'],
+      //   Register: [],
+      //   Add: [],
+      //   Active: []
+      // }
+      let total = {
+        register: 0,
+        add: 0,
+        active: 0
+      }
+      res.data.data.forEach(item => {
+        // data.xAxis.unshift(item.day)
+        // data.Register.unshift(item.reg)
+        // data.Add.unshift(item.add)
+        // data.Active.unshift(item.active)
+        total.register += item.reg
+        total.add += item.add
+        total.active += item.active
+      });
+      // setLineChartData(data)
+      setTotleData(total)
+    } catch (err) {
+      console.log(err);
+
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const getRecent15Data = async () => {
+    setLoading(true)
+    let params = {
+      per_page: 15,
+      page: 1,
+      start_time: moment().add(-LASTDAYS, 'days').format('YYYY-MM-DD') + ' 00:00:00',
+      end_time: moment().format('YYYY-MM-DD') + ' 23:59:59'
+    }
+    try {
+      let res: any = await getAppLogUserDailyApi(params)
       let data = {
         xAxis: [],
         legend: ['注册', '新增', '活跃'],
@@ -223,25 +242,15 @@ export const AppAnalyze = () => {
         Add: [],
         Active: []
       }
-      let total = {
-        register: 0,
-        add: 0,
-        active: 0
-      }
       res.data.data.forEach(item => {
         data.xAxis.unshift(item.day)
         data.Register.unshift(item.reg)
         data.Add.unshift(item.add)
         data.Active.unshift(item.active)
-        total.register += item.reg
-        total.add += item.add
-        total.active += item.active
       });
       setLineChartData(data)
-      setTotleData(total)
     } catch (err) {
       console.log(err);
-
     } finally {
       setLoading(false)
     }
@@ -304,7 +313,7 @@ export const AppAnalyze = () => {
         </Col>
 
         <Col span={24}>
-          <Card title='折线图'>
+          <Card title='最近15天'>
             <ReactECharts
               option={linOption}
               showLoading={loading}

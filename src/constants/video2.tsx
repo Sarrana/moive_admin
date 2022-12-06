@@ -50,10 +50,13 @@ export const enum BANNERTYPE {
     VIDEO = '2'
 }
 
+// APP看板颜色
 export const enum DATACOLOR {
     REGISTER = '#ff9900',
     ADD = '#ee6666',
     ACTIVE = '#73c0de'
 }
 
+// APP看板折线图展示最近多少天
+export const LASTDAYS = 15
 
