@@ -104,17 +104,8 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
                 </Form.Item> */}
                 <Form.Item label="广告图">
                     <Space direction="horizontal" size="large">
-                        <Form.Item label="手机端" name="upper_mb" initialValue={dataSource?.mobile_image_url} rules={[{ required: true, message: '请上传图片' }]}>
-                            <ImgUploader
-                                label="上传"
-                                file_type="pic"
-                                category="bannerpic"
-                                accept="image/jpeg,image/png,image/gif,image/webp,image/avif"
-                                maxCount={1} />
-                        </Form.Item>
-                        {
-                            obj.terminal == ADTERMINAL.WEB
-                            && <Form.Item label="PC端" name="upper_pc" initialValue={dataSource?.image_url} rules={[{ required: true, message: '请上传图片' }]}>
+                        <div>
+                            <Form.Item label="手机端" name="upper_mb" initialValue={dataSource?.mobile_image_url} rules={[{ required: true, message: '请上传图片' }]}>
                                 <ImgUploader
                                     label="上传"
                                     file_type="pic"
@@ -122,6 +113,22 @@ const AddModal: React.FC<AddModalPropType> = (P) => {
                                     accept="image/jpeg,image/png,image/gif,image/webp,image/avif"
                                     maxCount={1} />
                             </Form.Item>
+                            <p style={{ fontSize: '12px', color: 'red', marginTop: '-20px' }}> 16:9 <br /> 建议尺寸1440*810</p>
+                        </div>
+                        
+                        {
+                            obj.terminal == ADTERMINAL.WEB
+                            && <div>
+                                    <Form.Item label="PC端" name="upper_pc" initialValue={dataSource?.image_url} rules={[{ required: true, message: '请上传图片' }]}>
+                                    <ImgUploader
+                                        label="上传"
+                                        file_type="pic"
+                                        category="bannerpic"
+                                        accept="image/jpeg,image/png,image/gif,image/webp,image/avif"
+                                        maxCount={1} />
+                                </Form.Item>
+                                <p style={{ fontSize: '12px', color: 'red', marginTop: '-20px'  }}> 16:5 <br /> *图片尺寸1920*600且中心内容尺寸1440*600</p>
+                            </div>
                         }
 
                     </Space>
